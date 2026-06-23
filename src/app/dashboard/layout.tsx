@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { LayoutDashboard, Trophy, Heart, CreditCard, Settings, LogOut, Medal, User } from 'lucide-react'
 import { signOut } from '@/app/auth/actions'
 import GlobalBanner from './GlobalBanner'
+import MobileSidebar from './MobileSidebar'
 
 export default async function DashboardLayout({
   children,
@@ -93,10 +94,7 @@ export default async function DashboardLayout({
           <div className="hidden md:block">
             {/* Can leave empty or add breadcrumb */}
           </div>
-          <div className="md:hidden flex items-center">
-            <Trophy className="w-8 h-8 text-emerald-500 mr-3" />
-            <span className="font-semibold text-lg tracking-tight">Digital Heroes</span>
-          </div>
+          <MobileSidebar isAdmin={isAdmin} />
           
           <div className="flex items-center gap-6 ml-auto">
             <Link href="/dashboard/profile" className="flex items-center gap-3 px-5 py-2.5 text-zinc-300 hover:text-white bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 rounded-full transition-all shadow-lg hover:shadow-emerald-500/20 hover:border-emerald-500/30 group">

@@ -72,15 +72,18 @@ export default async function AdminPayoutsPage() {
                       )}
                     </td>
                     <td className="px-6 py-4 text-right">
-                      {winner.status === 'paid' ? (
-                        <Link href={`/admin/winners/receipt/${winner.id}`} className="text-xs text-zinc-400 hover:text-white underline">
-                          View Receipt
-                        </Link>
-                      ) : (
-                        <div className="flex items-center justify-end gap-2">
-                          {winner.proof_image_url && (
-                            <a href={winner.proof_image_url} download={`proof_${winner.user_id}.png`} className="text-xs text-emerald-400 hover:text-emerald-300 underline mr-4">Download Screenshot</a>
-                          )}
+                      <div className="flex flex-col items-end gap-2">
+                        {winner.proof_image_url && (
+                          <a href={winner.proof_image_url} target="_blank" rel="noopener noreferrer" download={`proof_${winner.user_id}.png`} className="text-xs font-medium text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 bg-emerald-500/10 px-2.5 py-1.5 rounded w-fit transition-colors">
+                            <UploadCloud className="w-3.5 h-3.5" /> View / Download Screenshot
+                          </a>
+                        )}
+                        {winner.status === 'paid' ? (
+                          <Link href={`/admin/winners/receipt/${winner.id}`} className="text-xs text-zinc-400 hover:text-white underline mt-1">
+                            View Receipt
+                          </Link>
+                        ) : (
+                          <div className="flex items-center justify-end gap-2 mt-1">
                           {winner.status === 'pending' && (
                             <>
                               <form action={updateVerificationStatus}>
@@ -108,8 +111,9 @@ export default async function AdminPayoutsPage() {
                               </button>
                             </form>
                           )}
-                        </div>
-                      )}
+                          </div>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 )

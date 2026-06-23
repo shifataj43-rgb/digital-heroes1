@@ -1,8 +1,9 @@
 import { getAdminClient } from '@/lib/supabase/server'
-import { Users, Search, MoreVertical, Edit2 } from 'lucide-react'
+import { Users, Search, MoreVertical, Edit2, Trash2 } from 'lucide-react'
 import Link from 'next/link'
-import { toggleSubscription } from './actions'
+import { toggleSubscription, deleteUser } from './actions'
 import SearchInput from './SearchInput'
+import DeleteUserButton from './DeleteUserButton'
 
 export default async function AdminUsersPage({
   searchParams,
@@ -78,6 +79,12 @@ export default async function AdminUsersPage({
                           {profile.subscription_status === 'active' ? 'Cancel Sub' : 'Activate Sub'}
                         </button>
                       </form>
+                      {profile.role !== 'admin' && (
+                        <form action={deleteUser}>
+                          <input type="hidden" name="userId" value={profile.id} />
+                          <DeleteUserButton />
+                        </form>
+                      )}
                     </div>
                   </td>
                 </tr>

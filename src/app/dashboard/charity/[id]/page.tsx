@@ -45,12 +45,15 @@ export default async function DashboardCharityProfilePage(props: { params: Promi
     if (cur === 'INR') raisedINR += amt * 0.10
   })
 
-  // Mocking upcoming events since it's not in the DB schema yet
-  const events = [
-    { id: 1, title: 'Annual Charity Golf Day', date: 'August 15, 2026', location: 'Pristine Fairways Club', type: 'Fundraiser' },
-    { id: 2, title: 'Community Outreach Gala', date: 'September 10, 2026', location: 'Downtown Convention Center', type: 'Awareness' },
-    { id: 3, title: 'Junior Golf Clinic', date: 'October 5, 2026', location: 'Municipal Links', type: 'Community' },
-  ]
+  // Fetch real events from the database
+  const { data: dbEvents, error } = await supabase
+    .from('charity_events')
+    .select('*')
+    .eq('charity_id', params.id)
+    .order('created_at', { ascending: true })
+
+  // Gracefully fallback to an empty array if the table doesn't exist yet
+  const events = error && error.code === '42P01' ? [] : (dbEvents || [])
 
   return (
     <div className="max-w-5xl mx-auto pb-20">
@@ -104,11 +107,8 @@ export default async function DashboardCharityProfilePage(props: { params: Promi
             <h2 className="text-2xl font-medium mb-4 flex items-center gap-2">
               About the Cause
             </h2>
-            <p className="text-zinc-300 text-lg leading-relaxed font-light">
+            <p className="text-zinc-300 text-lg leading-relaxed font-light whitespace-pre-wrap">
               {charity.description}
-            </p>
-            <p className="text-zinc-400 text-md leading-relaxed font-light mt-4">
-              By supporting {charity.name} through Digital Heroes, your monthly subscription contribution goes directly towards funding vital resources, awareness campaigns, and on-the-ground support operations. Every single swing you log in our platform translates directly into real-world impact for those who need it most.
             </p>
           </section>
 

@@ -59,3 +59,16 @@ export async function adminEditScore(formData: FormData) {
   revalidatePath(`/admin/users/${userId}`)
   return { success: true }
 }
+
+export async function deleteUser(formData: FormData) {
+  const userId = formData.get('userId') as string
+  const adminSupabase = await getAdminClient()
+
+  // First delete from auth (if we have admin permissions)
+  await adminSupabase.auth.admin.deleteUser(userId)
+  
+  // Then ensure the profile is deleted (in case cascade isn't set up)
+  await adminSupabase.from('profiles').delete().eq('id', userId)
+
+  revalidatePath('/admin/users')
+}

@@ -1,6 +1,7 @@
 import { login } from '@/app/auth/actions'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import PasswordInput from '@/components/PasswordInput'
 
 export default async function LoginPage(props: {
   searchParams: Promise<{ message: string }>
@@ -33,13 +34,7 @@ export default async function LoginPage(props: {
             <label className="text-sm text-zinc-400" htmlFor="password">
               Password
             </label>
-            <input
-              className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition-all"
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              required
-            />
+            <PasswordInput name="password" placeholder="••••••••" />
           </div>
 
           <button className="group mt-4 bg-white text-zinc-950 hover:bg-zinc-200 font-medium rounded-lg px-4 py-3 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
