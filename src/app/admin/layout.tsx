@@ -51,7 +51,7 @@ export default async function AdminLayout({
     notifications.push({
       id: `verify-${v.id}`,
       title: 'Action Required: Verify Winner',
-      message: `${v.profiles?.full_name || 'A user'} has submitted payout proof.`,
+      message: `${(Array.isArray(v.profiles) ? v.profiles[0]?.full_name : (v.profiles as any)?.full_name) || 'A user'} has submitted payout proof.`,
       time: new Date(v.created_at).toLocaleString(),
       type: 'alert',
       read: false
