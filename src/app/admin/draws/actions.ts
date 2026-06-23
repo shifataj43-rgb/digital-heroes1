@@ -288,7 +288,7 @@ export async function publishDraw(simulationResults: any, rolloverJackpot: boole
         const userEmail = authData?.user?.email
 
         if (userEmail) {
-          const userProfile = users?.find(p => p.id === u.id)
+          const { data: userProfile } = await adminSupabase.from('profiles').select('full_name').eq('id', u.id).maybeSingle()
           const name = userProfile?.full_name || 'Valued Subscriber'
           
           let prize = 0
