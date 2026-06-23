@@ -1,0 +1,134 @@
+import Link from 'next/link'
+import { Trophy, Heart, ArrowRight, Activity, ShieldCheck } from 'lucide-react'
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-zinc-950 text-white selection:bg-indigo-500/30 font-sans">
+      
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-zinc-950/50 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Trophy className="w-6 h-6 text-indigo-500" />
+            <span className="font-semibold tracking-tight text-lg">Digital Heroes</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="/admin" className="text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors hidden sm:block">
+              Admin Portal
+            </Link>
+            <div className="w-px h-4 bg-white/10 hidden sm:block" />
+            <Link href="/login" className="text-sm font-medium text-zinc-300 hover:text-white transition-colors">
+              Sign In
+            </Link>
+            <Link href="/signup" className="text-sm font-medium px-4 py-2 bg-white text-zinc-950 rounded-full hover:bg-zinc-200 transition-colors">
+              Join the Movement
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-zinc-950 to-zinc-950 -z-10" />
+        
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-zinc-300 mb-8 animate-fade-in">
+            <Heart className="w-4 h-4 text-rose-500" />
+            <span>Play golf. Make an impact.</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-light tracking-tight max-w-4xl mx-auto mb-8 leading-tight">
+            Elevate your game.<br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 font-medium">
+              Empower your cause.
+            </span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 font-light">
+            A new breed of subscription for the modern golfer. Track your scores, enter monthly prize draws, and seamlessly donate to a charity of your choice.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/signup" className="group w-full sm:w-auto px-8 py-4 bg-indigo-500 hover:bg-indigo-400 text-white rounded-full font-medium flex items-center justify-center gap-2 transition-all">
+              Start Your Journey
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link href="#how-it-works" className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-white rounded-full font-medium flex items-center justify-center transition-all">
+              How it works
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Charity Spotlight */}
+      <section className="py-24 border-b border-white/5 bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="p-12 rounded-3xl bg-gradient-to-br from-indigo-900/30 to-zinc-900/50 border border-indigo-500/20 flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-xs font-medium text-rose-400 uppercase tracking-wider">
+                Spotlight Charity
+              </div>
+              <h2 className="text-4xl font-light tracking-tight">Make-A-Wish Foundation</h2>
+              <p className="text-zinc-400 text-lg leading-relaxed">
+                We are proud to partner with Make-A-Wish this month. Your subscription directly helps grant life-changing wishes for children with critical illnesses.
+              </p>
+              <Link href="/charities" className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+                Explore Charity Directory <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="w-full md:w-1/3 aspect-square rounded-2xl bg-zinc-900 border border-white/10 flex items-center justify-center overflow-hidden relative shadow-2xl">
+               <Heart className="w-24 h-24 text-rose-500/20" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section id="how-it-works" className="py-24 bg-zinc-900/30 border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-white/20 transition-colors">
+              <Activity className="w-10 h-10 text-cyan-400 mb-6" />
+              <h3 className="text-xl font-medium mb-3">1. Track Performance</h3>
+              <p className="text-zinc-400 font-light leading-relaxed">
+                Log your last 5 Stableford scores. The system automatically maintains your rolling history, discarding the oldest rounds to keep your profile active.
+              </p>
+            </div>
+            
+            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-white/20 transition-colors">
+              <ShieldCheck className="w-10 h-10 text-indigo-400 mb-6" />
+              <h3 className="text-xl font-medium mb-3">2. Enter the Draw</h3>
+              <p className="text-zinc-400 font-light leading-relaxed">
+                Your 5 scores act as your "ticket". Every month, our algorithm draws winning numbers. Match 3, 4, or 5 numbers to win a share of the massive prize pool.
+              </p>
+            </div>
+            
+            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-white/20 transition-colors">
+              <Heart className="w-10 h-10 text-rose-400 mb-6" />
+              <h3 className="text-xl font-medium mb-3">3. Support Charities</h3>
+              <p className="text-zinc-400 font-light leading-relaxed">
+                A minimum of 10% of your subscription goes directly to a cause of your choosing. You play, you win, and the world benefits.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-32">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-light tracking-tight mb-6">Ready to change the game?</h2>
+          <p className="text-zinc-400 mb-10 font-light">Join thousands of golfers making a real-world impact while competing for monthly jackpots.</p>
+          <Link href="/signup" className="px-8 py-4 bg-white text-zinc-950 rounded-full font-medium hover:bg-zinc-200 transition-colors">
+            Subscribe Now
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 border-t border-white/10 text-center text-zinc-500 text-sm">
+        <p>© 2026 Digital Heroes. All rights reserved.</p>
+      </footer>
+    </div>
+  )
+}
