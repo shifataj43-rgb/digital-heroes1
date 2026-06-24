@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { signOut } from '@/app/auth/actions'
 import AdminNotifications, { NotificationType } from './AdminNotifications'
 import AdminProfileDropdown from './AdminProfileDropdown'
+import MobileSidebar from '@/app/dashboard/MobileSidebar'
 
 export default async function AdminLayout({
   children,
@@ -137,13 +138,15 @@ export default async function AdminLayout({
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-900/10 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
         
         {/* 1. Header Section */}
-        <header className="h-20 border-b border-white/5 bg-transparent flex items-center justify-between px-8 z-10 relative">
-          <div>
+        <header className="h-20 border-b border-white/5 bg-transparent flex items-center justify-between px-4 md:px-8 z-10 relative">
+          <MobileSidebar isAdmin={true} />
+          
+          <div className="hidden md:block">
             <h1 className="text-xl font-medium">Welcome, Admin</h1>
             <p className="text-sm text-zinc-400">{currentDate}</p>
           </div>
           
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6 ml-auto">
             <AdminNotifications initialNotifications={notifications} />
             <AdminProfileDropdown profile={profile} />
           </div>

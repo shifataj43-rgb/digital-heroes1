@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, LayoutDashboard, Trophy, Heart, CreditCard, Medal, Settings, LogOut } from 'lucide-react'
+import { MoreVertical, X, LayoutDashboard, Trophy, Heart, CreditCard, Medal, Settings, LogOut } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from '@/app/auth/actions'
@@ -15,7 +15,7 @@ export default function MobileSidebar({ isAdmin }: { isAdmin: boolean }) {
   return (
     <div className="md:hidden flex items-center">
       <button onClick={() => setIsOpen(true)} className="p-2 -ml-2 text-zinc-400 hover:text-white transition-colors">
-        <Menu className="w-6 h-6" />
+        <MoreVertical className="w-6 h-6" />
       </button>
       <div className="flex items-center ml-2">
         <Trophy className="w-6 h-6 text-emerald-500 mr-2" />
@@ -23,12 +23,12 @@ export default function MobileSidebar({ isAdmin }: { isAdmin: boolean }) {
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex">
+        <div className="fixed inset-0 z-[9999] flex">
           {/* Overlay */}
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm" onClick={closeMenu} />
           
           {/* Sidebar */}
-          <div className="relative w-72 bg-zinc-950 border-r border-white/10 shadow-2xl flex flex-col h-full z-50">
+          <div className="relative w-72 bg-zinc-950 border-r border-white/10 shadow-2xl flex flex-col h-full z-[9999]">
             <div className="p-6 flex items-center justify-between border-b border-white/10">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
