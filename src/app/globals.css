@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --font-inter: var(--font-inter);
+  --font-manrope: var(--font-manrope);
   --color-gold-400: #FACC15;
   --color-gold-500: #EAB308;
   --color-emerald-400: #34D399;

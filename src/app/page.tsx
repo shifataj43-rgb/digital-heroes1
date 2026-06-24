@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Heart, ArrowRight, Activity, ShieldCheck, Flag } from 'lucide-react'
 import Image from 'next/image'
+import LandingCharities from '@/components/LandingCharities'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 3600
@@ -82,32 +83,14 @@ export default async function Home() {
       {/* Dynamic Charities Grid */}
       <section className="py-24 border-t border-white/5 bg-zinc-950 relative">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-4">
             <h2 className="text-4xl font-light tracking-tight mb-4">Play for a Purpose</h2>
             <p className="text-zinc-400 font-light text-xl max-w-3xl mx-auto">
-              Every swing has the power to change a life. Here are the incredible organizations you can choose to support with your membership.
+              Every swing has the power to change a life. Explore the incredible organizations you can support.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {charities?.map((charity) => (
-              <div key={charity.id} className="rounded-2xl bg-zinc-900/40 border border-white/5 overflow-hidden flex flex-col shadow-xl hover:border-emerald-500/30 transition-all duration-500 hover:-translate-y-2 group">
-                <div className="relative h-48 w-full overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={charity.image_url || '/images/charity.png'} 
-                    alt={charity.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent" />
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-medium mb-2">{charity.name}</h3>
-                  <p className="text-zinc-400 text-sm flex-1">{charity.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <LandingCharities charities={charities || []} />
         </div>
       </section>
 

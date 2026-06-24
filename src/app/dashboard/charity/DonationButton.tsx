@@ -75,7 +75,7 @@ export default function DonationButton({ charityName, allCharities = [], currenc
               <div className="relative z-10">
                 <h2 className="text-xl font-medium flex items-center gap-2">
                   <Heart className="w-5 h-5 text-rose-400" />
-                  Support {selectedCharityName}
+                  Support {selectedCharityName === 'Other' ? 'Other Cause' : selectedCharityName}
                 </h2>
                 <p className="text-sm text-zinc-400 mt-1">100% of your donation goes directly to the cause.</p>
               </div>
@@ -100,7 +100,7 @@ export default function DonationButton({ charityName, allCharities = [], currenc
                     <label className="text-sm font-medium text-zinc-300 block mb-3">Select Charity to Support</label>
                     
                     {/* Display Selected Charity Image */}
-                    {selectedCharityName && (
+                    {selectedCharityName && selectedCharityName !== 'Other' && (
                       <div className="mb-4 h-32 w-full rounded-xl overflow-hidden relative border border-white/10">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img 
@@ -124,6 +124,7 @@ export default function DonationButton({ charityName, allCharities = [], currenc
                         {allCharities.map(c => (
                           <option key={c.id} value={c.name} className="bg-zinc-900">{c.name}</option>
                         ))}
+                        <option value="Other" className="bg-zinc-900">Other</option>
                       </select>
                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
                         ▼

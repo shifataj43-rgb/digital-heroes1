@@ -90,7 +90,7 @@ export default async function AdminLayout({
   })
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white flex selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-zinc-950 text-white flex font-inter selection:bg-emerald-500/30">
       {/* 10. Sidebar Navigation */}
       <aside className="w-64 border-r border-white/5 bg-zinc-900/10 backdrop-blur-3xl hidden md:flex flex-col relative z-20 shadow-[4px_0_24px_rgba(0,0,0,0.5)]">
         <div className="p-6">

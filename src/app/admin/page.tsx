@@ -179,13 +179,13 @@ export default async function AdminDashboard() {
         </div>
 
         {/* Pending Verifications */}
-        <div className="p-6 rounded-3xl bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/15 backdrop-blur-xl hover:border-amber-400/40 transition-all duration-500 hover:-translate-y-1 shadow-[0_0_20px_rgba(245,158,11,0.15)] hover:shadow-[0_0_30px_rgba(245,158,11,0.25)] flex flex-col justify-between h-36 relative overflow-hidden cursor-pointer">
+        <Link href="/admin/winners" className="p-6 rounded-3xl bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/15 backdrop-blur-xl hover:border-amber-400/40 transition-all duration-500 hover:-translate-y-1 shadow-[0_0_20px_rgba(245,158,11,0.15)] hover:shadow-[0_0_30px_rgba(245,158,11,0.25)] flex flex-col justify-between h-36 relative overflow-hidden cursor-pointer block">
           <div className="absolute top-0 right-0 p-4 opacity-10"><Clock className="w-16 h-16" /></div>
           <div className="flex items-center gap-2 text-sm font-medium text-amber-500">
             <Clock className="w-4 h-4" /> Pending Verifications
           </div>
           <div className="text-4xl font-light text-amber-400">{pendingVerifications}</div>
-        </div>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
@@ -228,7 +228,7 @@ export default async function AdminDashboard() {
                     </td>
                     <td className="py-4 text-zinc-400">{new Date(u.created_at).toLocaleDateString()}</td>
                     <td className="py-4 text-right">
-                      <button className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors">Edit</button>
+                      <Link href={`/admin/users/${u.id}`} className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg transition-colors inline-block">Edit</Link>
                     </td>
                   </tr>
                 ))}

@@ -50,7 +50,7 @@ export default function DashboardCards({
           </div>
           <div className="p-4 rounded-xl bg-white/5 border border-white/5 shadow-inner">
             <div className="text-zinc-400 text-sm mb-1">Upcoming Draw</div>
-            <div className="text-lg font-medium text-teal-300">{upcomingDrawDate.toLocaleDateString()}</div>
+            <div className="text-lg font-medium text-teal-300" suppressHydrationWarning>{upcomingDrawDate.toLocaleDateString()}</div>
           </div>
         </div>
         {scores && scores.length < 5 && (
@@ -100,7 +100,7 @@ export default function DashboardCards({
           <div className="space-y-3">
             {scores.map((score: any) => (
               <div key={score.id} className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/5 shadow-inner transition-colors hover:bg-white/10">
-                <span className="text-zinc-300">{new Date(score.date).toLocaleDateString()}</span>
+                <span className="text-zinc-300" suppressHydrationWarning>{new Date(score.date).toLocaleDateString()}</span>
                 <span className="font-medium text-emerald-300">{score.score} pts</span>
               </div>
             ))}

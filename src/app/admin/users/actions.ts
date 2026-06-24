@@ -64,17 +64,26 @@ export async function deleteUser(formData: FormData) {
   const userId = formData.get('userId') as string
   const adminSupabase = await getAdminClient()
 
+  console.log("Delete user action called for:", userId)
+
   try {
     // Delete related records first to avoid foreign key constraint violations
     await adminSupabase.from('scores').delete().eq('user_id', userId)
     await adminSupabase.from('winner_verifications').delete().eq('user_id', userId)
     await adminSupabase.from('winners').delete().eq('user_id', userId)
     
+    // We must also delete draw_entries as they reference user_id
+    await adminSupabase.from('draw_entries').delete().eq('user_id', userId)
+    
     // Then delete the profile
-    await adminSupabase.from('profiles').delete().eq('id', userId)
+    const { error: profileError } = await adminSupabase.from('profiles').delete().eq('id', userId)
+    if (profileError) console.error("Profile deletion error:", profileError)
 
     // Finally delete from auth.users
-    await adminSupabase.auth.admin.deleteUser(userId)
+    const { error: authError } = await adminSupabase.auth.admin.deleteUser(userId)
+    if (authError) console.error("Auth deletion error:", authError)
+    
+    console.log("Successfully deleted user:", userId)
   } catch (error) {
     console.error("Error deleting user:", error)
   }

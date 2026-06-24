@@ -26,7 +26,7 @@ export default async function DashboardLayout({
   const isSubscribed = profile?.subscription_status === 'active'
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-white flex selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-[#09090b] text-white flex selection:bg-emerald-500/30 font-inter">
       {/* Enhanced Sidebar with Glassmorphism */}
       <aside className="w-72 border-r border-white/5 bg-zinc-950/40 backdrop-blur-3xl hidden md:flex flex-col relative z-20 shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-10 pointer-events-none" />

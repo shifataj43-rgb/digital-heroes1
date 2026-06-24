@@ -96,13 +96,13 @@ export default function CharityManager({ initialCharities }: { initialCharities:
             </Link>
             
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-              <button 
-                onClick={(e) => { e.preventDefault(); handleOpenModal(charity); }}
+              <Link 
+                href={`/admin/charities/${charity.id}`}
                 className="p-2 bg-zinc-800 hover:bg-emerald-500/20 hover:text-emerald-400 rounded-lg text-zinc-400 transition-colors"
-                title="Quick Edit"
+                title="Manage Charity"
               >
                 <Edit2 className="w-4 h-4" />
-              </button>
+              </Link>
               <button 
                 onClick={(e) => { e.preventDefault(); handleDelete(charity.id); }}
                 className="p-2 bg-zinc-800 hover:bg-rose-500/20 hover:text-rose-400 rounded-lg text-zinc-400 transition-colors"
